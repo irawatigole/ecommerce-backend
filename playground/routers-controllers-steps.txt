@@ -1,0 +1,41 @@
+1. in config/routes
+const express = require('express');
+const router = express.Router();
+const { categoriesController } = require('../app/controllers/categories_controller');
+
+router.use('/categories', categoriesController); 
+
+module.exports = {
+    routes: router
+}
+
+2. in index.js    
+const { routes } = require('./config/routes');
+
+app.use('/', routes); 
+
+3. in app/controllers/ create categories_controller.js file
+const express = require('express');
+const router = express.Router();
+const { Category } = require('../models/category');
+
+// localhost:3000/categories/
+router.get('/', (req, res) => {
+    Category.find().then((categories) => {
+        res.send(categories); 
+    }).catch((err) => {
+        res.send(err); 
+    });
+});
+
+// localhost:3000/categories/:id
+router.get('/:id', (req, res) => {
+    let id = req.params.id; 
+    Category.findById(id).then((category) => {
+        res.send(category); 
+    });
+});
+
+module.exports = {
+    categoriesController: router
+}
