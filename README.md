@@ -1,7 +1,6 @@
 # E-commerce
 
 # overview
-Overview
 This project contains the back-end code for the clone of any e-commerce website with functionalities such as adding a product to cart, creating wishlists, placing orders, creating user account along with authorization and authentication. Authentication is implemented by genarating web tokens from npm package 'jwt', and password hashed using 'bcrypt' package.
 
 # Dependencies and installation
